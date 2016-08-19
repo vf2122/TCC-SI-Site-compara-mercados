@@ -1,0 +1,38 @@
+*{
+	
+	margin:0;
+	padding:0;
+}
+
+body{
+	padding-top: 100px;
+}
+
+header{
+	padding-bottom: 15px; 
+	background-color: #bcd;
+}
+
+
+div^navbar-brand:hover{
+	background-color: #bbb;
+}
+
+#input_pesquisa{
+	border: none;
+}
+
+#form_pesquisa{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+#botao_sair_modal:hover{
+	color: red;
+}
+
+
+#principal{
+	margin-top: 15px;
+	margin-bottom: 50px;
+}

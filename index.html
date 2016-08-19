@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Index</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/estilos.css">
+	
+	<script type="text/javascript" src="js/jquery.2.0.js">
+	</script>
+	<script type="text/javascript" src="js/bootstrap.min.js">
+	</script>
+	
+</head>
+
+<body>
+
+	<div class="container-fluid">
+	
+<!-- HEADER -->
+		<header class="row navbar navbar-fixed-top">
+			<div class="col-md-12">
+				<nav class="row">
+					<div class="col-md-1">
+						<a href="index.html" class="navbar-brand">PRINCIPAL </a>
+					</div>
+				
+					<div class="col-md-9">
+				
+					</div>
+			
+
+					<div class="col-md-2">
+						<div style="float: right; margin-right: 10px; ">
+							<a data-toggle="modal" href="#mymodal" class="navbar-brand navbar-brand">
+								<span class="glyphicon glyphicon-user"></span>
+							</a>
+						</div>
+					</div>
+				</nav>
+			
+				<nav class="row">
+				
+					<div class="col-md-3">
+					
+					</div>
+
+					<div class="col-md-6">
+						<form id="form_pesquisa">
+							<div class="input-group">
+								<input type="text" name="pesquisa" id="input_pesquisa" class="form-control" placeholder="Digite um produto...">
+								<span class="input-group-btn">
+									<input type="submit" class="btn btn-primary" value="Procurar">
+								</span>
+							</div>	
+						</form>
+					</div>
+	
+					<div class="col-md-3">
+							
+					</div>
+				</nav>
+			</div>
+		</header>	
+		
+
+		<section class="row">
+			<div class="col-md-12">
+				
+				<div id="mymodal" class="modal fade">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<header class="modal-header">
+								<button id="botao_sair_modal" class="close" data-dimiss="modal" aria-hidden="true" onClick="modal_hide">x</button>
+								<h3>Login de Usuário</h3>
+							</header> <!-- /header modal -->
+
+							<section class="modal-body">
+								<div class="container-fluid">
+									<nav class="row">
+										<div class="col-md-3">
+										</div>
+
+										<div class="col-md-6">
+											<form>
+												<input type="text" class="form-control" placeholder="Login">
+												<input type="password" class="form-control" placeholder="Senha">
+											</form>
+										</div>
+
+										<div class="col-md-3">
+										</div>
+									</nav>
+								</div>
+							</section> <!-- /section modal -->
+
+							<footer class="modal-footer">
+								<div class="container-fluid">
+									<nav class="row">
+										<div class="col-md-3">
+										</div>
+
+										<div class="col-md-3">
+											<button class="btn btn-primary form-control">Entrar</button>
+										</div>
+										<div class="col-md-3">
+											<button class="btn btn-danger form-control">Cancelar</button>
+										</div>
+
+										<div class="col-md-3">
+											<a href="pag_cadastra_cliente.html">Inscreva-se</a>
+										</div>
+									</nav>
+								</div>
+							</footer> <!-- /footer modal -->
+
+						</div> <!-- /div modal-content -->
+					</div> <!-- /div2 modal -->
+				</div> <!-- /div1 modal -->
+			</div>
+		</section> <!-- /section da página -->
+	</div>
+</body>
+
+<script >
+	function modal_hide(){
+		$('#mymodal').modal('hide');
+	}
+</script>
+</html>
