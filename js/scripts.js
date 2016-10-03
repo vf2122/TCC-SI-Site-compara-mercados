@@ -1,5 +1,6 @@
-function modal_hide(){
-		$('#mymodal').modal('toggle');
+function modal_hide(id_modal){
+		modal = id_modal;
+		$(modal).modal('toggle');
 	}
 	
 function funcaomostrar(id_div){

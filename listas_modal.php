@@ -2,12 +2,12 @@
 		<section class="row">
 			<div class="col-md-12">
 				
-				<div id="mymodal" class="modal fade">
+				<div id="modal_listas" class="modal fade">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<header class="modal-header">
-								<button id="botao_sair_modal" class="close" data-dimiss="modal" onClick="modal_hide('#mymodal')">x</button>
-								<h3>Login de Usuário</h3>
+								<button id="botao_sair_modal" class="close" data-dimiss="modal" onClick="modal_hide('#modal_listas')">x</button>
+								<h3>Listas de Compras</h3>
 							</header> <!-- /header modal -->
 
 							<section class="modal-body">
@@ -17,12 +17,9 @@
 										</div>
 
 										<div class="col-md-6">
-											<form action="func_login.php" id="form_modal_login" method="POST">
+											<form action="func_criar_lista.php" id="form_modal_login" method="POST">
 												<div class="row form-group">
-													<input type="text" name="login" class="form-control" placeholder="Login">
-												</div>
-												<div class="row form-group">
-													<input type="password" name="password" class="form-control" placeholder="Senha">
+													<input type="text" name="nome_lista" class="form-control" placeholder="Nome da Lista">
 												</div>
 										</div>
 
@@ -38,16 +35,13 @@
 										<div class="col-md-3">
 										</div>
 
-										<div class="col-md-3">
-											<button type="submit" class="btn btn-primary form-control">Entrar</button>
-										</div>
-										<div class="col-md-3">
-											<button class="btn btn-danger form-control">Cancelar</button>
-										</div>
+												<div class="col-md-3">
+													<button type="submit" class="btn btn-primary form-control">Criar</button>
+												</div>
+												<div class="col-md-3">
+													<button class="btn btn-danger form-control">Cancelar</button>
+												</div>
 											</form>
-										<div class="col-md-3">
-											<a href="pag_cadastra_cliente.php">Inscreva-se</a>
-										</div>
 									</nav>
 								</div>
 							</footer> <!-- /footer modal -->

@@ -5,7 +5,7 @@ include('func_conectar_bd.php');
 $login = $_POST['login'];
 $senha = $_POST['password'];
 
-$query = "SELECT * FROM tb_login WHERE email = '" . $login ."'";
+$query = "SELECT * FROM tb_cliente WHERE email = '" . $login ."'";
 
 $result = mysqli_query($conn, $query);	
 
@@ -13,18 +13,23 @@ if($result){
 	echo "encontrou";
 	while($consulta = mysqli_fetch_array($result)){
 		
-		$consulta_senha = $consulta['senha']; 
-		$consulta_cpf = $consulta['cpf'];
+		$_SESSION['cpf'] = $consulta['cpf'];
+		$_SESSION['nome'] = $consulta['nome'];
+		$_SESSION['sexo'] = $consulta['sexo'];
+		$_SESSION['apelido'] = $consulta['apelido'];
+		$_SESSION['telefone'] = $consulta['telefone'];
+		$_SESSION['dataNasc'] = $consulta['dataNasc'];
+		$_SESSION['estado_civil'] = $consulta['estado_civil'];
+		$_SESSION['email'] = $consulta['email'];
+		$_SESSION['senha'] = $consulta['senha'];
 		
-		if($consulta_senha == $senha){
-			$_SESSION['cpf'] = $consulta_cpf;
-			header('Location: index.php');
+		if($_SESSION['senha'] == $senha){
+			$pag_voltar = "Location: http://localhost/TCC%20-%20SI%20(site%20compara%20mercados)/pag_area_cliente.php";
+			header($pag_voltar);
 		}else{
 			echo '<br>senha INcorreta';
-
 		}
 	}
-	
 }else{
 	echo "nao encontrou";
 }

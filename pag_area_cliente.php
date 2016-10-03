@@ -21,63 +21,15 @@
 
 	<div class="container-fluid">
 	
-<!-- HEADER -->
-		<header class="row navbar navbar-fixed-top">
-			<div class="col-md-12">
-				<nav class="row">
-					<div class="col-md-1">
-						<a href="index.php" class="navbar-brand">PRINCIPAL </a>
-					</div>
-				
-					<div class="col-md-9">
-				
-					</div>
-			
-			
-					<div class="col-md-2">
-						<div style="float: right; margin-right: 10px; ">
-							<a data-toggle="modal" href="#mymodal" class="navbar-brand navbar-brand">
-								<span class="glyphicon glyphicon-user"></span>
-							</a>
-						</div>
-						<div style="float: right;">
-							<a href="pag_area_carrinho.php" class="navbar-brand navbar-brand">
-								<span class="glyphicon glyphicon-shopping-cart"></span>
-							</a>
-						</div>
-					</div>
-				</nav>
-			
-				<nav class="row">
-				
-					<div class="col-md-3">
-					
-					</div>
-				
-				<!-- input de busca -->
-					<div class="col-md-6">
-						<form id="form_pesquisa" action="pag_pesquisa_produto.php" method="GET">
-							<div class="input-group">
-								<input type="text" name="pesquisa" id="input_pesquisa" class="form-control" placeholder="Digite um produto...">
-								<span class="input-group-btn">
-									<input type="submit" class="btn btn-primary" value="Procurar">
-								</span>
-							</div>	
-						</form>
-					</div> <!-- /input de busca -->
-	
-					<div class="col-md-3">
-							
-					</div>
-				</nav>
-			</div>
-		</header>	
-		
 		<?php	//inclui o codigo do modal de login
+			include('header.php');
 			include('header_modal.php');
+			include('listas_modal.php');
+			include('func_conectar_bd.php');
 		?>
 	
 <!-- /HEADER -->
+
 	<nav class="row" style="margin-top: 20px">
 
 	<nav class="col-md-4" >
@@ -86,8 +38,8 @@
 		<div class="row">
 			<div class="col-md-7"  style="background-color: #CCCCFD">				
 				<img src="a" style="height: 110px;">
-				<a href="#"><p>trocar - nome</p></a>
-				<a href="#"><p>email</p></a>
+				<a href="#"><p>trocar - <?php echo $_SESSION['nome'];?></p></a>
+				<a href="func_logout.php"><p>sair</p></a>
 			</div>
 		</div>
 		<div class="row">
@@ -131,7 +83,7 @@
 				<div class="row">
 					<div class="col-md-4">
 						<label>nome:</label>
-						<input type="text" class="form-control" placeholder="nome">
+						<input type="text" class="form-control" placeholder="nome" value="<?php echo $_SESSION['nome'];?>">
 					</div>	
 				</div>		
 
@@ -139,7 +91,7 @@
 				<div class="row">
 					<div class="col-md-4">
 						<label>cpf:</label>
-						<input type="text" class="form-control" placeholder="nome">
+						<input type="text" class="form-control" placeholder="nome" value="<?php echo $_SESSION['cpf'];?>">
 					</div>
 				</div>
 				
@@ -147,7 +99,7 @@
 				<div class="row">
 					<div class="col-md-4">
 						<label>apelido:</label>
-						<input type="text" class="form-control" placeholder="nome">
+						<input type="text" class="form-control" placeholder="nome" value="<?php echo $_SESSION['apelido'];?>">
 					</div>
 				</div>
 				
@@ -173,7 +125,7 @@
 				<div class="row">
 					<div class="col-md-4">
 						<label>Telefone:</label>
-						<input type="text" class="form-control" placeholder="nome">
+						<input type="text" class="form-control" placeholder="nome" value="<?php echo $_SESSION['telefone'];?>">
 					</div>
 				</div>
 				
@@ -182,10 +134,8 @@
 					<div class="col-md-4">
 						<label>Estado Civil:</label>
 						<select name="est_civil" class="form-control">
-							<option value="solteiro">Solteiro (a)
-							<option value="casado">Casado (a)
-							<option value="viuvo">Viúvo (a)
-							<option value="divorciado">Divorciado (a)										
+							<option value="s">Solteiro (a)
+							<option value="c">Casado (a)							
 						</select>
 					</div>
 				</div>
@@ -194,7 +144,7 @@
 				<div class="row">
 					<div class="col-md-4">
 						<label>Email:</label>
-						<input type="text" class="form-control" placeholder="nome">					
+						<input type="text" class="form-control" placeholder="nome" value="<?php echo $_SESSION['email'];?>">					
 					</div>
 				</div>
 		</aside>
@@ -299,12 +249,35 @@
 		</aside>
 		
 		
-		<aside id="aside_minhas_listas" class="container-fluid" style="display: none">
-			<div class="row">
-				<div class="col-md-3">
-					<button class="btn btn-primary"> ok </button>
-				</div>
-			</div>
+		<aside id="aside_minhas_listas" class="container-fluid" style="display: block">
+			<?php
+				$query = 'SELECT * FROM tb_lista_compra_cliente WHERE cpf_cliente =' .$_SESSION['cpf'];
+				$resultado = mysqli_query($conn, $query);
+				$count = 0;
+				
+				while($consulta = mysqli_fetch_array($resultado)){
+					$array_nome_lista[] = $consulta['nome_lista'];
+
+						echo '
+							<div class="row">
+								<div class="col-md-5" style="background-color: blue">
+									<h4 style="display: inline;">'.$array_nome_lista[$count].'</h4>
+									<button class="btn btn-danger" data-toggle="modal" href="func_remove_lista.php" style="float: right"> 
+										-	 
+									</button>
+								</div>
+							</div>
+						';
+					$count++;
+				}
+			?>
+							<div class="row">
+								<div class="col-md-5" style="background-color: blue">
+									<button class="btn btn-primary" data-toggle="modal" href="#modal_listas" style="float: right"> 
+										+	 
+									</button>
+								</div>
+							</div>
 		</aside>
 	</nav>
 	</div> <!-- /div.container-fluid -->
