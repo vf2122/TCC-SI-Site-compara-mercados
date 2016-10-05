@@ -257,14 +257,17 @@
 				
 				while($consulta = mysqli_fetch_array($resultado)){
 					$array_nome_lista[] = $consulta['nome_lista'];
+					$array_id_lista[] = $consulta['id_lista'];
 
 						echo '
 							<div class="row">
 								<div class="col-md-5" style="background-color: blue">
-									<h4 style="display: inline;">'.$array_nome_lista[$count].'</h4>
-									<button class="btn btn-danger" data-toggle="modal" href="func_remove_lista.php" style="float: right"> 
-										-	 
-									</button>
+									<form action="func_remove_lista.php" method="POST">
+										<h4 style="display: inline;">'.$array_nome_lista[$count].'</h4>
+										<button name="id_da_lista" value="'.$array_id_lista[$count].'" class="btn btn-danger" data-toggle="modal" href="func_remove_lista.php" style="float: right"> 
+											-	 
+										</button>
+									</form>
 								</div>
 							</div>
 						';

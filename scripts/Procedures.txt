@@ -1,0 +1,21 @@
+DELIMITER $
+CREATE PROCEDURE cadastrarCliente(cpf bigint, nome varchar(50), sexo char, apelido varchar(10), telefone numeric, dataNasc date, 
+							 	  estado_civil char, email varchar(30), senha varchar(20), logradouro varchar(25), logradouro_numero numeric,
+                                  complemento varchar (20), bairro varchar(25), id_uf int, id_cidade int, CEP numeric)
+BEGIN
+
+INSERT INTO tb_cliente VALUES (DEFAULT, cpf, nome, sexo, apelido, telefone, dataNasc, estado_civil, email, senha, logradouro, 
+								logradouro_numero, complemento, bairro, id_uf, id_cidade, CEP);    
+    
+END $
+
+DELIMITER $$
+CREATE PROCEDURE cadastrarListaDeCompra(idCliente mediumInt, idProduto mediumInt, quantidade int)
+BEGIN
+
+LOOP SET produtos = LENGTH(idProduto);
+
+INSERT INTO tb_lista_compra_cliente VALUES (idCliente, idProduto, quantidade);    
+    
+END $$
+
