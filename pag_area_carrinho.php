@@ -1,13 +1,3 @@
-<?php
-	
-	$servidor = "localhost";
-	$usuario = "root";
-	$senha = "";
-	$banco = "bd_facilitte";
-	$conn = mysqli_connect($servidor, $usuario, $senha, $banco);
-	
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,13 +27,17 @@
 		?>
 		
 		<section class="row" id="section_resultados_pesquisa">
+				
 			<div class="col-md-2">
-				<form action="func_add_carrinho_lista.php" method="POST">
-				<button class="btn btn-success" style="width: 130px; height: 40px; margin: 2px">Adicionar a lista</button> 
-				<button class="btn btn-danger" style="width: 130px; height: 40px; margin: 2px" onClick="limpar_carrinho()">Limpar tudo</button>
+					<a data-toggle="modal" href="#modal_listas"><button class="btn btn-success" style="width: 130px; height: 40px; margin: 2px">Adicionar a lista</button></a>
+					<button class="btn btn-danger" style="width: 130px; height: 40px; margin: 2px" onClick="limpar_carrinho()">Limpar tudo</button>
 			</div>
 			<div class="col-md-10">
+			<form action="func_add_carrinho_lista.php" method="POST">
 				<?php
+					
+					include('modal_listas.php');
+				
 					if(isset($_SESSION['carrinho'])){
 						$produto = $_SESSION['carrinho'];
 					}
@@ -99,6 +93,7 @@
 							}
 						}
 					}
+					
 				?>
 				</form>
 			</div>

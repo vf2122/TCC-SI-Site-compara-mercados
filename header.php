@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	include('func_conectar_bd.php');
 ?>
 	
 <!-- HEADER -->
@@ -67,4 +68,4 @@
 			</div>
 		</header>
 		
-<?php var_dump($_SESSION);?>
+<?php //var_dump($_SESSION);?>
