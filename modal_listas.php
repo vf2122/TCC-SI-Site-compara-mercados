@@ -7,7 +7,7 @@
 			</header>
 			<section class="modal-body">
 				<?php
-					$query = "SELECT * FROM tb_lista_compra_cliente";
+					$query = "SELECT * FROM tb_lista_compra_cliente WHERE cpf_cliente = ".$_SESSION['cpf'];
 					$resultado = mysqli_query($conn, $query);
 					$count = 0;
 					

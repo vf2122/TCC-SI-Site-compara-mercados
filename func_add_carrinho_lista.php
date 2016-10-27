@@ -12,7 +12,7 @@ foreach($_POST as $arr){
 		$rows = mysqli_num_rows($resultado);
 	
 		if($rows == 0){
-			$query = "INSERT INTO tb_item_lista (id_lista, id_produto, quantidade) VALUES (" .$arr[0]. " , " .$lista[$i]['id']. " , " .$lista[$i]['quantidade']. " )";
+			$query = "INSERT INTO tb_item_lista (id_lista, id_produto, quantidade) VALUES (" .$arr. " , " .$lista[$i]['id']. " , " .$lista[$i]['quantidade']. " )";
 			mysqli_query($conn , $query);
 		}
 	}

@@ -1,5 +1,4 @@
 *{
-	
 	margin:0;
 	padding:0;
 }
@@ -10,9 +9,10 @@ body{
 
 header{
 	padding-bottom: 15px; 
-	background-color: #bcd;
+	background-image: linear-gradient(to bottom, RGB(000, 225, 253), RGB(000, 105, 223) 130%);
 }
 
+RGB(000, 225, 253)
 
 #input_pesquisa{
 	border: none;
@@ -32,7 +32,14 @@ header{
 	margin-bottom: 20px;
 }
 
-
+#div_imagens_index{
+	height: 400px;
+	background-image: url('img/bmw.jpg'); 
+	background-size: 100% 100%;
+	margin-bottom: 25px;
+}
+	
+	
 #conteudo_principal_pag_cadast_cliente{
 	margin-top: 15px;
 	margin-bottom: 50px;
