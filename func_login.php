@@ -15,6 +15,7 @@ if($result){
 		
 		$_SESSION['cpf'] = $consulta['cpf'];
 		$_SESSION['nome'] = $consulta['nome'];
+		$_SESSION['id'] = $consulta['id_cliente'];
 		$_SESSION['sexo'] = $consulta['sexo'];
 		$_SESSION['apelido'] = $consulta['apelido'];
 		$_SESSION['telefone'] = $consulta['telefone'];
@@ -28,6 +29,9 @@ if($result){
 			header($pag_voltar);
 		}else{
 			echo '<br>senha INcorreta';
+			session_destroy();
+			$pag_voltar = "Location: http://localhost/TCC%20-%20SI%20(site%20compara%20mercados)/index.php";
+			header($pag_voltar);
 		}
 	}
 }else{

@@ -231,9 +231,9 @@
 			</aside>
 		</nav>		
 
-		
-		
-		
+
+		<footer class="row" style=" height: 50px; background-color: black;">
+		</footer>				
 	</div> <!-- /div.container-fluid -->
 </body>
 

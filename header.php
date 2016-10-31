@@ -2,8 +2,21 @@
 	session_start();
 	include('func_conectar_bd.php');
 ?>
-	
+<script>
+			$(function(){
+				var lista_nomes =[
+					"teste",
+					"teste2"
+				
+				];
+				
+				$("input_pesquisa").autocomplete({
+					source: lista_nomes
+				});
+			});
+		</script>	
 <!-- HEADER -->
+
 		<header class="row navbar navbar-fixed-top">
 			<div class="col-md-12">
 				<nav class="row">
@@ -77,12 +90,15 @@
 							
 					</div>
 				</nav>
+				<nav class="row" style="background-color: black; height: 25px;	margin-top: 7px;">
+				</nav>
 			</div>
 		</header>
-		<div class="row" style="height: 30px; background-color: #222">
-		</div>
 		
 <?php //var_dump($_SESSION);?>
 
 		<div class="row" style="height: 20px;">
 		</div>
+		
+		
+

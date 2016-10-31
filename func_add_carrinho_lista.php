@@ -4,6 +4,8 @@ include('func_conectar_bd.php');
 
 $lista = $_SESSION['carrinho'];
 
+var_dump($_POST);
+
 foreach($_POST as $arr){
 
 	for($i = 0 ; $i < count($lista) ; $i++){
@@ -17,6 +19,6 @@ foreach($_POST as $arr){
 		}
 	}
 }
-header("Location: pag_area_carrinho.php");
+//header("Location: pag_area_carrinho.php");
 
 ?>

@@ -10,6 +10,8 @@
 	
 	<script type="text/javascript" src="js/jquery.2.0.js">
 	</script>
+	<script type="text/javascript" src="js/jquery-ui.min.js">
+	</script>
 	<script type="text/javascript" src="js/bootstrap.min.js">
 	</script>
 	<script type="text/javascript" src="js/scripts.js">
@@ -26,6 +28,7 @@
 			include('header_modal.php');
 		?>
 		
+	<section id="conteudo">
 		<div class="row">
 			<div class="col-md-1">
 			</div>
@@ -154,7 +157,12 @@
 				?>
 
 		</div>
+	</section>
+		<footer class="row" style=" height: 50px; background-color: black;">
+		</footer>		
+	
 	</div> <!-- /div.container-fluid -->
+
 </body>
 <script>
 

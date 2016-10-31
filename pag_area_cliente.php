@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,13 +27,21 @@
 			include('header_modal.php');
 			include('listas_modal.php');
 			include('func_conectar_bd.php');
+			
+			if(isset($_SESSION['cpf'])){
+				
+			}else{
+			$pag_voltar = "Location: http://localhost/TCC%20-%20SI%20(site%20compara%20mercados)/index.php";
+			header($pag_voltar);
+			}
 		?>
 	
 <!-- /HEADER -->
 
+	<section id="conteudo">
 	<nav class="row" style="margin-top: 20px">
 
-	<nav class="col-md-4" >
+	<nav class="col-md-4">
 		<aside class="container-fluid">
 	
 		<div class="row">
@@ -67,7 +76,6 @@
 	
 	<nav class="col-md-8">
 		<aside id="aside_dados_pessoais" class="container-fluid" style="display: none">
-				
 				<div class="row">
 					<div class="col-md-4">
 						<label>sexo:</label>
@@ -150,83 +158,35 @@
 		</aside>
 		
 		
-		<aside id="aside_enderecos" class="container-fluid" style="display: none">
-				<div class="row">
-					<div class="col-md-5">
-						<label>Rua:</label>
-						<input type="text" class="form-control" placeholder="nome">					
-					</div>
+		<aside id="aside_enderecos" class="container-fluid" style="display: block">
+			<div class="row">
+				<div class="col-md-2">
+					<a data-toggle="modal" href="#modal_endereco">
+						<img src="img/icone_mais_casa.png" style="border-radius: 35px;">
+					</a>
 				</div>
 				
-				
-				<div class="row">
-					<div class="col-md-2">
-						<label>N°:</label>
-						<input type="text" class="form-control" placeholder="nome">					
-					</div>
-					<div class="col-md-3">
-						<label>Complemento:</label>
-						<input type="text" class="form-control" placeholder="nome">					
-					</div>
+				<div class="col-md-8">
+					<?php
+						include('modal_endereco.php');
+						$query = "SELECT * FROM tb_endereco WHERE id_cliente = ".$_SESSION['id'];
+						$res = mysqli_query($conn , $query);
+						
+						while($row = mysqli_fetch_array($res)){
+							$nome_end = $row['nome_endereco'];
+							$rua = $row['logradouro'];
+							$numero = $row['logradouro_numero'];
+							$complemento = $row['complemento'];
+							$bairro = $row['bairro'];
+							$cep = $row['CEP'];
+						}
+						
+						
+					?>
 				</div>
-				
-				
-				<div class="row">
-					<div class="col-md-5">
-						<label>CEP:</label>
-						<input type="text" class="form-control" placeholder="nome">					
-					</div>
-				</div>
-
-				
-				<div class="row">
-					<div class="col-md-5">
-						<label>Bairro:</label>
-						<input type="text" class="form-control" placeholder="nome">					
-					</div>
-				</div>
-				
-				
-				<div class="row">
-					<div class="col-md-3">
-						<label>Cidade:</label>
-						<input type="text" class="form-control" placeholder="nome">					
-					</div>
-				
-					<div class="col-md-2">
-										<label>Estado:</label>
-										<select name="estado" class="form-control">
-											<option value="AC">(AC) Acre
-											<option value="AL">(AL) Alagoas
-											<option value="AM">(AM) Amapá
-											<option value="BA">(BA) Bahia
-											<option value="CE">(CE) Ceará
-											<option value="DF">(DF) Distrito Federal
-											<option value="ES">(ES) Espírito Santo
-											<option value="GO">(GO) Goiás
-											<option value="MA">(MA) Maranhão
-											<option value="MT">(MT) Mato Grosso
-											<option value="MS">(MS) Mato Grosso do Sul
-											<option value="MG">(MG) Minas Gerais
-											<option value="PA">(PA) Pará
-											<option value="PB">(PB) Paraíba
-											<option value="PR">(PR) Paraná
-											<option value="PE">(PE) Pernambuco
-											<option value="PI">(PI) Piauí
-											<option value="RJ">(RJ) Rio de Janeiro
-											<option value="RN">(RN) Rio Grande do Norte
-											<option value="RS">(RS) Rio Grande do Sul
-											<option value="RO">(RO) Rondônia
-											<option value="RR">(RR) Roraima
-											<option value="SC">(SC) Santa Catarina
-											<option value="SP">(SP) São Paulo
-											<option value="SE">(SE) Sergipe
-											<option value="TO">(TO) Tocantins									
-										</select>
-					</div>
-				</div>
+			</div>
 		</aside>
-		
+
 		
 		<aside id="aside_trocar_senha" class="container-fluid" style="display: none">
 			<div class="row">
@@ -249,7 +209,26 @@
 		</aside>
 		
 		
-		<aside id="aside_minhas_listas" class="container-fluid" style="display: block">
+		<aside id="aside_minhas_listas" class="container-fluid" style="display: none">
+			
+							
+						<div class="col-md-5" style="padding-left: 25px; padding-right: 25px;">
+							<div id="div_lista_pag_pesquisa">
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-md-2">
+											<button class="btn btn-success" data-toggle="modal" href="#modal_listas"> 
+												<span class="glyphicon glyphicon-list-alt"></span>	 
+											</button>
+										</div>
+										<div class="col-md-10">
+											<h3 style="display: inline;">Criar nova Lista</h3>
+										</div>	
+									</div>
+								</div>
+							</div>
+						</div>
+			
 			<?php
 				$query = 'SELECT * FROM tb_lista_compra_cliente WHERE cpf_cliente =' .$_SESSION['cpf'];
 				$resultado = mysqli_query($conn, $query);
@@ -259,30 +238,34 @@
 					$array_nome_lista[] = $consulta['nome_lista'];
 					$array_id_lista[] = $consulta['id_lista'];
 
-						echo '
-							<div class="row">
-								<div class="col-md-5" style="background-color: blue">
-									<form action="func_remove_lista.php" method="POST">
-										<h4 style="display: inline;">'.$array_nome_lista[$count].'</h4>
-										<button name="id_da_lista" value="'.$array_id_lista[$count].'" class="btn btn-danger" data-toggle="modal" href="func_remove_lista.php" style="float: right"> 
-											-	 
-										</button>
-									</form>
-								</div>
+						echo '<div class="col-md-5" style="padding-left: 25px; padding-right: 25px;">
+									<div id="div_lista_pag_pesquisa">
+										<div class="container-fluid">
+											<div class="row">
+												<div class="col-md-2">
+													<form action="func_remove_lista.php" method="POST">
+														<button name="id_da_lista" value="'.$array_id_lista[$count].'" class="btn btn-danger" data-toggle="modal" href="func_remove_lista.php"> 
+															<span class="glyphicon glyphicon-trash"></span>	 
+														</button>
+												</div>
+												<div class="col-md-10">
+														<h3 style="display: inline;">'.$array_nome_lista[$count].'</h3>
+													</form>
+												</div>	
+											</div>
+										</div>
+									</div>
 							</div>
 						';
 					$count++;
 				}
 			?>
-							<div class="row">
-								<div class="col-md-5" style="background-color: blue">
-									<button class="btn btn-primary" data-toggle="modal" href="#modal_listas" style="float: right"> 
-										+	 
-									</button>
-								</div>
-							</div>
 		</aside>
 	</nav>
+	</section>
+	
+		<footer class="row" style=" height: 50px; background-color: black;">
+		</footer>		
 	</div> <!-- /div.container-fluid -->
 </body>
 

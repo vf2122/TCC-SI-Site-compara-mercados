@@ -21,8 +21,16 @@
 				?>
 			</section>
 			<footer class="modal-footer">
-					<input type="submit" value="Adicionar" class="btn btn-success">
+					<button class="btn btn-success" onClick="adiciona_lista()">Adicionar</button>
 			</footer>
 		</div>
 	</div>
 </div>
+<script>
+	
+	function adiciona_lista(){
+	
+			location.replace("func_add_carrinho_lista.php");
+		
+	}
+</script>

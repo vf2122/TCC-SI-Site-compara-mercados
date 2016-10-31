@@ -14,15 +14,13 @@
 		sort($array);
 		$_SESSION['carrinho'] = $array;	
 	
-		$pag_voltar = "Location: http://localhost/TCC%20-%20SI%20(site%20compara%20mercados)/pag_area_carrinho.php";
-		header($pag_voltar);
+	//	$pag_voltar = "Location: http://localhost/TCC%20-%20SI%20(site%20compara%20mercados)/pag_area_carrinho.php";
+	//	header($pag_voltar);
 	}elseif($funcao == 1){
 		unset($_SESSION['carrinho']);
 		
-		$pag_voltar = "Location: http://localhost/TCC%20-%20SI%20(site%20compara%20mercados)/pag_area_carrinho.php";
-		header($pag_voltar);
+	//	$pag_voltar = "Location: http://localhost/TCC%20-%20SI%20(site%20compara%20mercados)/pag_area_carrinho.php";
+	//	header($pag_voltar);
 	}
-	
-	
 	
 ?>
