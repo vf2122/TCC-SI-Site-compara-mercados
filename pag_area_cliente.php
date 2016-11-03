@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +19,7 @@
 
 <body>
 
+	<section id="conteudo">
 	<div class="container-fluid">
 	
 		<?php	//inclui o codigo do modal de login
@@ -38,40 +38,66 @@
 	
 <!-- /HEADER -->
 
-	<section id="conteudo">
-	<nav class="row" style="margin-top: 20px">
+	<nav class="row">
 
-	<nav class="col-md-4">
-		<aside class="container-fluid">
+	<nav class="col-md-2" id="menu_pag_cliente">
+		<aside>
 	
 		<div class="row">
-			<div class="col-md-7"  style="background-color: #CCCCFD">				
-				<img src="a" style="height: 110px;">
-				<a href="#"><p>trocar - <?php echo $_SESSION['nome'];?></p></a>
-				<a href="func_logout.php"><p>sair</p></a>
+			<div class="col-md-12">	
+				<div class="row">
+					<img src="a" style="height: 110px;">
+					<a href="#"><p>trocar - <?php echo $_SESSION['nome'];?></p></a>
+					<a href="func_logout.php"><p>sair</p></a>
+				<div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-7" style="background-color: #CCCCFD">
-				<p>MEUS DADOS</p>
-				<a href="#" onClick="funcaomostrar('aside_dados_pessoais')"><p>Dados Pessoais</p></a>
-				<a href="#" onClick="funcaomostrar('aside_enderecos')"><p>Endereços</p></a>
-				<a href="#" onClick="funcaomostrar('aside_trocar_senha')"><p>Trocar Senha</p></a>
+			<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row">
+						<p>MEUS DADOS</p>
+					</div>
+					<div class="row row_item_menu">
+						<a href="#" onClick="funcaomostrar('aside_dados_pessoais')"><p>Dados Pessoais</p></a>
+					</div>
+					<div class="row row_item_menu">
+						<a href="#" onClick="funcaomostrar('aside_enderecos')"><p>Endereços</p></a>
+					</div>
+					<div class="row row_item_menu">
+						<a href="#" onClick="funcaomostrar('aside_trocar_senha')"><p>Trocar Senha</p></a>
+					</div>
+				</div>
+			</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-7" style="background-color: #CCCCFD">
-				<p>COMPRAS</p>
-				<a href="#" onClick="funcaomostrar('aside_minhas_compras')"><p>Minhas Compras</p></a>
-				<a href="#" onClick="funcaomostrar('aside_minhas_listas')"><p>Minhas Listas</p></a>
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="row">
+							<p>COMPRAS</p>
+						</div>
+						<div class="row row_item_menu">
+							<a href="#" onClick="funcaomostrar('aside_minhas_compras')"><p>Minhas Compras</p></a>
+						</div>
+						<div class="row row_item_menu">
+							<a href="#" onClick="funcaomostrar('aside_minhas_listas')"><p>Minhas Listas</p></a>
+						</div>
+					</div>
+				</div>	
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-6" style="background-color: #CCCCFD">
+			<div class="col-md-12">
 				
 			</div>
 		</div>
 	</aside>
+	</nav>
+	
+	<nav class="col-md-1">
 	</nav>
 	
 	<nav class="col-md-8">
@@ -210,24 +236,23 @@
 		
 		
 		<aside id="aside_minhas_listas" class="container-fluid" style="display: none">
-			
 							
-						<div class="col-md-5" style="padding-left: 25px; padding-right: 25px;">
-							<div id="div_lista_pag_pesquisa">
-								<div class="container-fluid">
-									<div class="row">
-										<div class="col-md-2">
-											<button class="btn btn-success" data-toggle="modal" href="#modal_listas"> 
-												<span class="glyphicon glyphicon-list-alt"></span>	 
-											</button>
-										</div>
-										<div class="col-md-10">
-											<h3 style="display: inline;">Criar nova Lista</h3>
-										</div>	
-									</div>
-								</div>
+			<div class="col-md-5" style="padding-left: 25px; padding-right: 25px;">
+				<div id="div_lista_pag_pesquisa">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-2">
+								<button class="btn btn-success" data-toggle="modal" href="#modal_listas"> 
+									<span class="glyphicon glyphicon-list-alt"></span>	 
+								</button>
 							</div>
+							<div class="col-md-10">
+								<h3 style="display: inline;">Criar nova Lista</h3>
+							</div>	
 						</div>
+					</div>
+				</div>
+			</div>
 			
 			<?php
 				$query = 'SELECT * FROM tb_lista_compra_cliente WHERE cpf_cliente =' .$_SESSION['cpf'];
@@ -255,7 +280,7 @@
 											</div>
 										</div>
 									</div>
-							</div>
+							  </div>
 						';
 					$count++;
 				}
@@ -264,7 +289,7 @@
 	</nav>
 	</section>
 	
-		<footer class="row" style=" height: 50px; background-color: black;">
+		<footer class="row" style="height: 50px; background-color: black; margin-top:0px;">
 		</footer>		
 	</div> <!-- /div.container-fluid -->
 </body>

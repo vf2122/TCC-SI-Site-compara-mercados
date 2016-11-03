@@ -261,13 +261,15 @@
 	}
 	
 	function remove_carrinho(id){
-		
-		var id_produto = id;
-		var confirmacao = window.confirm("Tem certeza que deseja remover este produto?");
-		
-		if(confirmacao == true){
-			location.replace("func_remove_do_carrinho.php?funcao=2&id="+id_produto);
-		}
+			
+			return false;
+			var id_produto = id;
+			var confirmacao = window.confirm("Tem certeza que deseja remover este produto?");
+			
+			if(confirmacao == true){
+				var confirmacao = window.confirm("entrou no if "+id_produto);
+				location.replace("func_remove_do_carrinho.php?funcao=2&id="+id_produto);
+			}
 		
 	}
 </script>

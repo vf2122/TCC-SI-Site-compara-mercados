@@ -11,8 +11,10 @@
 	}
 	$array[] = array("id" => $id_Item, "quantidade" => $qtd_Item);
 	sort($array);
+	
+	var_dump($array);
 	$_SESSION['carrinho'] = $array;
 	
-	$pag_voltar = "Location: http://localhost/TCC%20-%20SI%20(site%20compara%20mercados)/pag_pesquisa_produto.php?pesquisa=".$pesquisa;
-	header($pag_voltar);
+//	$pag_voltar = "Location: http://localhost/TCC%20-%20SI%20(site%20compara%20mercados)/pag_pesquisa_produto.php?pesquisa=".$pesquisa;
+	//header($pag_voltar);
 ?>

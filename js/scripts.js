@@ -15,5 +15,16 @@ function funcaomostrar(id_div){
 	}
 	
 
+	
+function mostra_lista(num){
+	
+	var id = "lista_" + num;
+	if(document.getElementById(id).style.display == "block"){
+		document.getElementById(id).style.display = "none";
+	}else{
+		document.getElementById(id).style.display = "block";
+	}
+	
+	}
 
 	

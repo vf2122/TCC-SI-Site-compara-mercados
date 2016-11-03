@@ -19,7 +19,7 @@
 										<div class="col-md-6">
 											<form action="func_criar_lista.php" id="form_modal_login" method="POST">
 												<div class="row form-group">
-													<input type="text" name="nome_lista" class="form-control" placeholder="Nome da Lista">
+													<input type="text" name="nome_lista" class="form-control" maxlength="20" placeholder="Nome da Lista">
 												</div>
 										</div>
 

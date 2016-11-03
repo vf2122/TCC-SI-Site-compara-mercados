@@ -79,7 +79,8 @@ legend{
 	background-color: #f5f5f5;
 	height: 290px;
 	padding: 15px;
-	//border: 1px solid black;
+	box-shadow: 7px 6px 8px #BBB;
+	border-radius: 5px 5px 5px 5px;
 }
 
 .img_resultado_pesquisa{
@@ -121,11 +122,35 @@ legend{
 	
 }
 
+.p_item_lista{
+	font-size: 10px;
+	color: #669;
+	vertical-align: middle;
+}
+
 #div_lista_pag_pesquisa{
 	margin-top: 15px;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 7px;
 	background-color: #f5f5f5;
+	box-shadow: 10px 5px 8px #BBB;
+}
+
+
+.row_item_menu{
+	padding-left: 10px;
 	
+}
+
+.row_item_menu:hover{
+	background-image: linear-gradient(to bottom, RGB(100, 225, 253), RGB(000, 105, 183) 130%);
+	border: 1px solid #88F;
+	color: green;
+}
+
+#menu_pag_cliente{
+	background-color: #CCCCFD; 
+	min-height: 478px;
+	padding-top: 15px;
 }

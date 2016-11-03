@@ -38,31 +38,44 @@
 				while($row = mysqli_fetch_array($res)){
 					$id_lista[] = $row['id_lista'];
 					$nome_lista[] = $row['nome_lista'];
+					
+					$id[] = $nome_lista[$count];
 				
 					echo '<div class="col-md-4" style="padding-left: 25px; padding-right: 25px;">
 							<div id="div_lista">
 								<div class="row">
 									<div class="col-md-1">
-										<input type="checkbox" onClick="selecionar_todos()"> 
+										<input type="checkbox" onClick="selecionar_todos('.$count.')"> 
 									</div>
-									<div class="col-md-8">
+									<div class="col-md-6">
 										'.strtoupper($nome_lista[$count]).'
 									</div>
-									<div class="col-md-3">
-										<div>
+									<div class="col-md-4">
+										<div style="float: right">
+										<button class="btn btn-success btn-xs" onClick="calcular('.$id_lista[$count].', '.$count.')">
+											<span class="glyphicon glyphicon-piggy-bank"><span>
+										</button>
 										<button class="btn btn-primary btn-xs" onClick="mostra_lista('.$id_lista[$count].')">
-										<span class="glyphicon glyphicon-triangle-bottom"><span></button>
+											<span class="glyphicon glyphicon-triangle-bottom"><span>
+										</button>
+										
 										<input type="hidden" name="lista" value="'.$id_lista[$count].'">
-										<button type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button><br>
+										
+										<button class="btn btn-danger btn-xs" onClick="submit('.$count.')">
+											<span class="glyphicon glyphicon-trash"></span>
+										</button><br>
 										</div>
 									</div>
 								</div>
+								
+								<div class="row" id="lista_'.$id_lista[$count].'" style="display: none;">
+																
 								<hr>
 								<div class="row" style="margin-top: 5px;">
 									<div class="col-md-1"><b>
 									
 									</div>
-									<div class="col-md-2"><b>
+									<div class="col-md-2">
 										item
 									</div>
 									<div class="col-md-4">
@@ -76,8 +89,6 @@
 									</div></b>
 								</div>
 								
-								<div class="row" id="lista_'.$id_lista[$count].'" style="display: none;">
-								
 								<hr>
 									<div class="container-fluid">
 								';
@@ -85,7 +96,7 @@
 								$query2 = "SELECT tb_item_lista.id_produto, tb_produto.nome_produto, tb_produto.volume, tb_produto.un_medida, tb_item_lista.quantidade, tb_marca.descricao 
 
 											FROM tb_item_lista 
-
+	
 											inner join tb_produto 
 											on tb_item_lista.id_produto = tb_produto.id_produto 
 
@@ -97,7 +108,8 @@
 								$res2 = mysqli_query($conn, $query2);
 
 								$count2 = 0;
-								
+								echo '<form id="form_remove_item'.$count.'" action="func_remove_item_lista.php?lista='.$id_lista[$count].'" method="POST">';
+											
 								while($row2 = mysqli_fetch_array($res2)){
 												
 									$array_id_produto[] = $row2['id_produto'];
@@ -105,12 +117,12 @@
 									$array_quantidade[] = $row2['quantidade'];
 									$descricao[] = $row2['descricao'];
 									$peso[] = $row2['volume'].$row2['un_medida'];					
-														
-														
+									
+								
 									echo'
 										<div class="row">
 											<div class="col-md-1">
-												<input type="checkbox">
+												<input type="checkbox" id="form'.$count.'-checkbox'.$count2.'" name="checkbox'.$count2.'" value="'.$array_id_produto[$count2].'">
 											</div>
 											<div class="col-md-2">
 												'.($count2+1).'
@@ -128,8 +140,9 @@
 									$count2++;
 								}
 								
+								echo '	<input type="hidden" id="total_checkboxs'.$count.'" value="'.$count2.'">
+									  </form>';
 								echo'</div>
-							
 								</div>
 							</div>
 						</div>';
@@ -150,6 +163,8 @@
 					$count++;
 				}
 				echo '</div>';
+				
+				
 			?>
 		</section>	
 		</section>
@@ -162,10 +177,37 @@
 </body>
 <script>
 
-	function selecionar_todos(){
+	
+	function submit(id){
 		
-		document.getElementById('checkbox30').checked = true;
+		var form = id;
+		document.getElementById('form_remove_item'+form).submit();
 		
+	}
+	
+	function calcular(id , id_conta){
+		
+		var id_lista = id;
+		tt_itens = document.getElementById('total_checkboxs' + id_conta).value;
+				
+		if(tt_itens == 0){
+			alert('Essa lista está vazia!');
+		}else{	
+			location.replace("func_calcular_lista.php?id="+id_lista);
+		}
+	}
+	
+	function selecionar_todos(id){
+		tt_checkbox = document.getElementById('total_checkboxs'+id).value;
+		
+		for(i = 0 ; i < tt_checkbox ; i++){
+			
+			if(document.getElementById('form'+id+'-checkbox'+i).checked == true){
+				document.getElementById('form'+id+'-checkbox'+i).checked = false;
+			}else{
+				document.getElementById('form'+id+'-checkbox'+i).checked = true;
+			}
+		}
 	}
 	
 	function limpar_carrinho(){
